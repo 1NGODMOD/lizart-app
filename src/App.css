@@ -15,21 +15,21 @@
 }
 
 .board {
-  width: calc(64px * 8);
-  height: calc(64px * 8);
+  width: calc(100px * 8);
+  height: calc(100px * 8);
   display: flex;
   flex-wrap: wrap;
 }
 .cell {
-  width: 64px;
-  height: 64px;
+  width: 100px;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .cell img {
-  width: 50px;
-  height: 50px;
+  width: 90px;
+  height: 90px;
   position: relative;
 }
 .black {

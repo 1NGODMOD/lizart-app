@@ -23,6 +23,16 @@ const BoardComponent: FC<BoardProps> = ({
     if (
       selectedCell &&
       selectedCell !== cell &&
+      selectedCell.figure?.canKill(cell)
+    ) {
+      console.log("FUCK");
+      console.log(selectedCell.figure?.canKill(cell));
+      selectedCell.canKill(cell);
+      swapPlayer();
+      setSelectedCell(null);
+    } else if (
+      selectedCell &&
+      selectedCell !== cell &&
       selectedCell.figure?.canMove(cell)
     ) {
       selectedCell.moveFigure(cell);
@@ -46,8 +56,8 @@ const BoardComponent: FC<BoardProps> = ({
     setBoard(newBoard);
   }
   return (
-    <>
-      <h4>Текущий игрок {currentPlayer?.color}</h4>
+    <div>
+      <div>Текущий игрок {currentPlayer?.color}</div>
       <div className="board">
         {board.cells.map((row, index) => (
           <React.Fragment key={index}>
@@ -64,7 +74,7 @@ const BoardComponent: FC<BoardProps> = ({
           </React.Fragment>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

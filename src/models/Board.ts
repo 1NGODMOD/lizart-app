@@ -1,6 +1,7 @@
 import { Cell } from "./Cell";
 import { Colors } from "./Colors";
 import { Checker } from "./figures/Checker";
+import { Figure, FigureNames } from "./figures/Figure";
 export class Board {
   cells: Cell[][] = [];
 
@@ -39,7 +40,9 @@ export class Board {
       }
     }
   }
-
+  public Delete(cell: Cell) {
+    cell.figure = null;
+  }
   public getCopyBoard(): Board {
     const newBoard = new Board();
     newBoard.cells = this.cells;
@@ -50,12 +53,25 @@ export class Board {
   }
 
   public highlightCells(selectedCell: Cell | null) {
-    //переписать надо
+    let kill = false;
+    let canKill = 0;
     for (let i = 0; i < this.cells.length; i++) {
       const row = this.cells[i];
       for (let j = 0; j < row.length; j++) {
         const target = row[j];
-        target.available = !!selectedCell?.figure?.canMove(target);
+        // target.available = !!selectedCell?.figure?.canMove(target);
+        target.available = !!selectedCell?.figure?.canKill(target);
+        if (!!selectedCell?.figure?.canKill(target)) canKill++;
+      }
+    }
+    if (canKill === 0) {
+      for (let i = 0; i < this.cells.length; i++) {
+        const row = this.cells[i];
+        for (let j = 0; j < row.length; j++) {
+          const target = row[j];
+          target.available = !!selectedCell?.figure?.canMove(target);
+          // target.available = !!selectedCell?.figure?.canKill(target);
+        }
       }
     }
   }

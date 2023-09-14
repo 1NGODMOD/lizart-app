@@ -4,6 +4,7 @@ import "./App.css";
 import { Board } from "./models/Board";
 import { Player } from "./models/Player";
 import { Colors } from "./models/Colors";
+import "./main.css";
 const App = () => {
   const [board, setBoard] = useState(new Board());
   const [whitePlayer, setwhitePlayer] = useState(new Player(Colors.WHITE));

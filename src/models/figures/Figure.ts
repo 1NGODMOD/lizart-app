@@ -30,6 +30,8 @@ export class Figure {
 
     return true;
   }
-
+  canKill(target: Cell): boolean {
+    return false;
+  }
   moveFigure(target: Cell) {}
 }
